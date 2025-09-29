@@ -116,7 +116,7 @@
     display: flex;
     perspective: 1000px;
     z-index: 2;
-    margin-bottom: 120px; /* Space for navigation */
+    margin-bottom: 20px;
 }
 
 .face {
@@ -230,15 +230,14 @@
 }
 
 /* About Navigation */
+/* About Navigation - Fixed Button Display */
 .about_nav {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     z-index: 3;
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 20px 0;
 }
 
 .about_nav ul {
@@ -255,9 +254,11 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
-.about_nav a {
+/* Regular navigation links */
+.about_nav li:not(:has(.button)) a {
     text-decoration: none;
     color: #333;
     padding: 0.8rem 1.5rem;
@@ -267,9 +268,10 @@
     overflow: hidden;
     font-weight: 500;
     white-space: nowrap;
+    display: block;
 }
 
-.about_nav a::before {
+.about_nav li:not(:has(.button)) a::before {
     content: attr(data-text);
     position: absolute;
     top: 0;
@@ -286,19 +288,19 @@
     transition: transform 0.3s ease;
 }
 
-.about_nav a:hover::before,
-.about_nav a.active::before {
+.about_nav li:not(:has(.button)) a:hover::before,
+.about_nav li:not(:has(.button)) a.active::before {
     transform: translateY(0);
 }
 
-.about_nav a:hover,
-.about_nav a.active {
+.about_nav li:not(:has(.button)) a:hover,
+.about_nav li:not(:has(.button)) a.active {
     color: transparent;
 }
 
-/* Buttons */
-.button {
-    padding: 1rem 2rem;
+/* Button-specific styles */
+.about_nav .button {
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 25px;
     font-weight: 600;
@@ -309,30 +311,120 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    line-height: 1;
+    margin: 0;
 }
 
-.download {
+/* Download button */
+.about_nav .download {
     background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
+    color: white !important;
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-.download:hover {
+.about_nav .download:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+    color: white !important;
 }
 
-.hire {
+/* Hire button */
+.about_nav .hire {
     background: linear-gradient(135deg, #ff6b6b, #ffd93d);
-    color: white;
+    color: white !important;
     box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
-.hire:hover {
+.about_nav .hire:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(255, 107, 107, 0.6);
+    color: white !important;
 }
 
+/* Remove any conflicting styles from regular links */
+.about_nav .button::before {
+    display: none !important;
+}
+
+.about_nav .button:hover::before {
+    display: none !important;
+}
+
+/* Responsive fixes for buttons */
+@media (max-width: 768px) {
+    .about_nav ul {
+        gap: 0.8rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .about_nav .button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    .about_nav li:not(:has(.button)) a {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .about_nav ul {
+        gap: 0.6rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    .about_nav .button {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .about_nav li:not(:has(.button)) a {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about_nav ul {
+        flex-direction: column;
+        width: 90%;
+        max-width: 250px;
+        border-radius: 20px;
+    }
+    
+    .about_nav .button,
+    .about_nav li:not(:has(.button)) a {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 1rem;
+    }
+    
+    .about_nav li {
+        width: 100%;
+    }
+}
+
+/* Ensure buttons are properly aligned */
+.about_nav li {
+    display: flex;
+    align-items: center;
+}
+
+/* Fix for any potential color inheritance issues */
+.about_nav .button,
+.about_nav .button:hover,
+.about_nav .button:focus {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/* Ensure proper button spacing in the list */
+.about_nav ul li:has(.button) {
+    margin: 0;
+}
 /* About Container */
 .about_container {
     position: relative;
@@ -347,6 +439,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     z-index: 2;
     min-height: 500px;
+    margin-top: 20px;
 }
 
 /* Content Sections */
@@ -576,128 +669,6 @@
     }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .wrapper {
-        flex-direction: column;
-        width: 95%;
-        margin-bottom: 100px;
-    }
-    
-    .face {
-        width: 100%;
-        min-height: 400px;
-    }
-    
-    .face1 {
-        border-radius: 20px 20px 0 0;
-    }
-    
-    .face2 {
-        border-radius: 0 0 20px 20px;
-        min-height: 300px;
-    }
-    
-    .content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .about_container {
-        width: 95%;
-        padding: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .about_nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        border-radius: 20px;
-        padding: 0.5rem 1rem;
-    }
-    
-    .about_nav a {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .about_container {
-        padding: 1.5rem;
-    }
-    
-    .content h1 {
-        font-size: 2rem;
-    }
-    
-    .cover {
-        padding: 1.5rem;
-        margin: 1.5rem 0 1.5rem 50px;
-    }
-    
-    .job_box {
-        left: -35px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-    
-    .middle_line {
-        left: 25px;
-    }
-    
-    .section-title h2 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .about {
-        padding: 1rem 0;
-    }
-    
-    .face1 {
-        padding: 2rem 1rem;
-    }
-    
-    .content h1 {
-        font-size: 1.8rem;
-    }
-    
-    .text {
-        font-size: 1rem;
-    }
-    
-    .about_nav ul {
-        padding: 0.5rem;
-    }
-    
-    .about_nav a {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
-    }
-    
-    .button {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-    }
-    
-    .about_container {
-        padding: 1rem;
-    }
-    
-    .cover {
-        margin-left: 40px;
-        padding: 1rem;
-    }
-    
-    .job_box {
-        left: -30px;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-}
-
 /* Fix for about container positioning */
 .about.main {
     position: relative;
@@ -771,4 +742,342 @@
 .about.main {
     padding: 2rem 0;
     position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .wrapper {
+        width: 95%;
+    }
+    
+    .about_container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .wrapper {
+        flex-direction: column;
+        width: 95%;
+        margin-bottom: 20px;
+    }
+    
+    .face {
+        width: 100%;
+        min-height: 400px;
+    }
+    
+    .face1 {
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .face2 {
+        border-radius: 0 0 20px 20px;
+        min-height: 300px;
+    }
+    
+    .content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .about_container {
+        width: 95%;
+        padding: 2rem;
+    }
+    
+    .box {
+        width: 120px;
+        height: 120px;
+        right: 5%;
+    }
+    
+    .circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .triangle {
+        border-left: 60px solid transparent;
+        border-right: 60px solid transparent;
+        border-bottom: 104px solid #6c5ce7;
+        right: 10%;
+    }
+}
+
+@media (max-width: 900px) {
+    .dots {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about_nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 20px;
+        padding: 0.5rem 1rem;
+    }
+    
+    .about_nav a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .about_container {
+        padding: 1.5rem;
+    }
+    
+    .content h1 {
+        font-size: 2rem;
+    }
+    
+    .cover {
+        padding: 1.5rem;
+        margin: 1.5rem 0 1.5rem 50px;
+    }
+    
+    .job_box {
+        left: -35px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .middle_line {
+        left: 25px;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .box {
+        width: 100px;
+        height: 100px;
+        top: 5%;
+        right: 3%;
+    }
+    
+    .circle {
+        width: 70px;
+        height: 70px;
+        bottom: 10%;
+        left: 3%;
+    }
+    
+    .triangle {
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 87px solid #6c5ce7;
+        top: 40%;
+        right: 5%;
+    }
+    
+    .dots {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .about {
+        padding: 1rem 0;
+    }
+    
+    .face1 {
+        padding: 2rem 1rem;
+    }
+    
+    .content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .text {
+        font-size: 1rem;
+    }
+    
+    .about_nav ul {
+        padding: 0.5rem;
+    }
+    
+    .about_nav a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .about_container {
+        padding: 1rem;
+        min-height: 400px;
+    }
+    
+    .cover {
+        margin-left: 40px;
+        padding: 1rem;
+    }
+    
+    .job_box {
+        left: -30px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .middle_line {
+        left: 20px;
+    }
+    
+    .box {
+        width: 80px;
+        height: 80px;
+        top: 3%;
+        right: 2%;
+    }
+    
+    .circle {
+        width: 60px;
+        height: 60px;
+        bottom: 8%;
+        left: 2%;
+    }
+    
+    .triangle {
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-bottom: 70px solid #6c5ce7;
+        top: 35%;
+        right: 3%;
+    }
+    
+    .dots {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .content p {
+        font-size: 1rem;
+    }
+    
+    .text-container {
+        max-height: 250px;
+    }
+    
+    .about_nav ul {
+        border-radius: 15px;
+    }
+    
+    .about_nav a {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.75rem;
+    }
+    
+    .button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    .cover h2 {
+        font-size: 1.1rem;
+    }
+    
+    .date {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.8rem;
+    }
+    
+    .name_company {
+        font-size: 0.9rem;
+    }
+    
+    .text_hidden {
+        font-size: 0.9rem;
+    }
+    
+    .box {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .circle {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .triangle {
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+        border-bottom: 52px solid #6c5ce7;
+    }
+    
+    .dots {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .dot {
+        width: 5px;
+        height: 5px;
+    }
+}
+
+@media (max-width: 360px) {
+    .about_nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem;
+    }
+    
+    .about_nav a {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .content h1 {
+        font-size: 1.4rem;
+    }
+    
+    .face1 {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .about_container {
+        padding: 0.8rem;
+    }
+    
+    .cover {
+        margin-left: 35px;
+        padding: 0.8rem;
+    }
+    
+    .job_box {
+        left: -25px;
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .middle_line {
+        left: 17px;
+    }
 }
