@@ -45,15 +45,7 @@
             <div class="c c5"></div>
             <div class="c c6"></div>
         </div>
-        <script>
-            let loader = document.querySelector(".loader");
-            function loaded() {
-                loader.classList.add("remove");
-                setTimeout(() => {
-                    loader.style.display = "none";
-                }, 1000);
-            }
-        </script>
+
         <!-- HAMBURGER MENU BUTTON (responsively visible) -->
         <div class="hamburger">
             <div class="bar1"></div>
@@ -82,59 +74,96 @@
     <p>&copy; saadia dahrane 2024.</p>
 </nav>
 
-        <div class="container">
-            <div class="layer layer1 active">
-                <div class="home main">
-                    <div class="canvas_container">
-                        <canvas></canvas>
+       <!-- Updated Home Section Structure -->
+ <div class="menu-overlay"></div>
+
+    <div class="container">
+        <!-- HOME SECTION -->
+        <div class="layer layer1 active">
+            <div class="home main" id="home-section">
+                <div class="canvas_container">
+                    <canvas id="homeCanvas"></canvas>
+                </div>
+                
+                <div class="home-particles" id="particles-container"></div>
+                
+                <div class="content-for-home">
+                    <div class="img-container"></div>
+                    
+                    <h1>Saadia Dahrane</h1>
+                    
+                    <div class="social-icons">
+                        <div class="s-icon">
+                            <a href="https://www.facebook.com/dahrane.s?mibextid=kFxxJD" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <div class="s-name">Facebook</div>
+                        </div>
+                        <div class="s-icon">
+                            <a href="https://www.linkedin.com/in/saadia-dahrane-ab60b8272" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <div class="s-name">LinkedIn</div>
+                        </div>
+                        <div class="s-icon">
+                            <a href="https://github.com/dahranesrh" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <div class="s-name">GitHub</div>
+                        </div>
+                        <div class="s-icon">
+                            <a href="https://wa.me/message/4FQQ6YVWO6ZDO1" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <div class="s-name">WhatsApp</div>
+                        </div>
+                        <div class="s-icon">
+                            <a href="mailto:s.dahrane.s@gmail.com" target="_blank">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <div class="s-name">Email</div>
+                        </div>
                     </div>
-                    <div class="content-for-home">
-                        <div class="img-container"></div>
-                        <h1 align="center">Saadia dahrane</h1>
-                        <div class="social-icons">
-                            <div class="s-icon">
-                                <a href="https://www.facebook.com/dahrane.s?mibextid=kFxxJD">
-                                    <i class="fab fa-facebook"
-></i>
-                                </a>
-                                <div class="s-name">Facebook</div>
-                            </div>
-                            <div class="s-icon">
-                                <a href="
-                                https://www.linkedin.com/in/saadia-dahrane-ab60b8272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <div class="s-name">linkedin</div>
-                            </div>
-                            <div class="s-icon">
-                                <a href="https://github.com/dahranesrh">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <div class="s-name">GitHub</div>
-                            </div>
-                           
-                            <div class="s-icon">
-                                <a href="https://wa.me/message/4FQQ6YVWO6ZDO1">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                                <div class="s-name">whatsapp</div>
-                            </div>
-                            <div class="s-icon">
-                                <a href="mailto:s.dahrane.s@gmail.com?subject=Job%20Opportunity&body=Hello%20Saadia,%20I%20would%20like%20to%20discuss%20a%20project%20with%20you.">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                <div class="s-name">Email</div>
-                            </div>
-                        </div>
 
+                    <!-- DESKTOP SIDE NAV -->
+                    
+
+                    <!-- MOBILE SIDE NAV TOGGLE -->
+                    <div class="mobile-side-nav-toggle" id="mobileSideNavToggle">
+                        <span></span>
+                    </div>
+
+                    <!-- MOBILE SIDE NAV -->
+                    <div class="mobile-side-nav" id="mobileSideNav">
+                        <div class="mobile-side-nav-header">
+                            <h3>Quick Navigation</h3>
+                            <p>Jump to section</p>
+                        </div>
+                        <div class="mobile-side-nav-buttons">
+                            <a href="#about" class="mobile-side-nav-btn" onclick="toggleMobileSideNav()">
+                                <i class="fas fa-user"></i>
+                                About
+                            </a>
+                            <a href="#portfolio" class="mobile-side-nav-btn" onclick="toggleMobileSideNav()">
+                                <i class="fas fa-briefcase"></i>
+                                Portfolio
+                            </a>
+                            <a href="#contact" class="mobile-side-nav-btn" onclick="toggleMobileSideNav()">
+                                <i class="fas fa-envelope"></i>
+                                Contact
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- MOBILE SIDE NAV OVERLAY -->
+                    <div class="mobile-side-nav-overlay" id="mobileSideNavOverlay"></div>
+
+                    <div class="titles-for-side-nav">
                        
-
-                        <div class="titles-for-side-nav">
-                            <span></span>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 <div class="layer layer2">
     <div class="about main">
         <!-- SEGMENT FOR STYLING. -->
@@ -270,8 +299,24 @@
                         <div class="progress" style="width :50%" data-width="60%"></div>
                     </div>
                 </div>
+                 <div class="skill">
+                    <div class="name">HTML</div>
+                    <div class="value" style="left: 65%">65%</div>
+                    <div class="percent">
+                        <div class="progress" style="width: 65%" data-width="65%"></div>
+                    </div>
+                </div>
+
+                 <div class="skill">
+                    <div class="name">CSS</div>
+                    <div class="value" style="left: 65%">65%</div>
+                    <div class="percent">
+                        <div class="progress" style="width: 65%" data-width="65%"></div>
+                    </div>
+                </div>
+
                 <div class="skill">
-                    <div class="name">flutter</div>
+                    <div class="name">JAVASCRIPT</div>
                     <div class="value" style="left: 65%">65%</div>
                     <div class="percent">
                         <div class="progress" style="width: 65%" data-width="65%"></div>
@@ -930,17 +975,88 @@ API design, and database integration.
         <script src="js/main.js"></script>
 
         <!-----------------LOCAL (MAIN FILE { USED TO ANIMATE WEBPAGE.})----------------->
-        <script>
-            const animate1 = anime.timeline({
-                targets: ".circle",
-                loop: true,
-                duration: 2000,
-                direction: "alternate",
-                easing: "easeInOutQuad",
+         <script>
+        // Loader function
+        let loader = document.querySelector(".loader");
+        function loaded() {
+            loader.classList.add("remove");
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 1000);
+        }
+
+        // Mobile Side Navigation functionality
+        function toggleMobileSideNav() {
+            const mobileSideNav = document.getElementById('mobileSideNav');
+            const mobileSideNavToggle = document.getElementById('mobileSideNavToggle');
+            const mobileSideNavOverlay = document.getElementById('mobileSideNavOverlay');
+            
+            mobileSideNav.classList.toggle('active');
+            mobileSideNavToggle.classList.toggle('active');
+            mobileSideNavOverlay.classList.toggle('active');
+            
+            // Prevent body scrolling when mobile nav is open
+            document.body.style.overflow = mobileSideNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Initialize mobile side nav events
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileSideNavToggle = document.getElementById('mobileSideNavToggle');
+            const mobileSideNavOverlay = document.getElementById('mobileSideNavOverlay');
+            
+            if (mobileSideNavToggle) {
+                mobileSideNavToggle.addEventListener('click', toggleMobileSideNav);
+            }
+            
+            if (mobileSideNavOverlay) {
+                mobileSideNavOverlay.addEventListener('click', toggleMobileSideNav);
+            }
+
+            // Close mobile side nav when clicking on links
+            document.querySelectorAll('.mobile-side-nav-btn').forEach(link => {
+                link.addEventListener('click', toggleMobileSideNav);
             });
-            animate1.add({
-                translateX: 350,
+
+            // Close mobile side nav with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const mobileSideNav = document.getElementById('mobileSideNav');
+                    if (mobileSideNav && mobileSideNav.classList.contains('active')) {
+                        toggleMobileSideNav();
+                    }
+                }
             });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const mobileSideNav = document.getElementById('mobileSideNav');
+                if (window.innerWidth > 1024 && mobileSideNav && mobileSideNav.classList.contains('active')) {
+                    toggleMobileSideNav();
+                }
+            });
+        });
+
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Your existing animations
+        const animate1 = anime.timeline({
+            targets: ".circle",
+            loop: true,
+            duration: 2000,
+            direction: "alternate",
+            easing: "easeInOutQuad",
+        });
+        animate1.add({
+            translateX: 350,
+        });
+
+            
 
             let dot = document.querySelectorAll(".dot");
             for (let i = 0; i < dot.length; i++) {
@@ -1026,6 +1142,5 @@ API design, and database integration.
     
 
   
-
 
 
