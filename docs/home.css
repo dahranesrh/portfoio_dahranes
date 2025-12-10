@@ -82,7 +82,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('img/profile.jpg') center/cover;
+    background: url('img/') center/cover;
     border-radius: 50%;
     z-index: 1;
 }
@@ -763,3 +763,4 @@
         display: none;
     }
 }
+
